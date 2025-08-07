@@ -1,5 +1,7 @@
 package model.entities;
 
+import java.util.Objects;
+
 public class Product {
 	private Integer id;
 	private String name;
@@ -46,6 +48,34 @@ public class Product {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public Double totalValueInStock() {
+		return price * quantity;
+	}
+
+	public void addQuantity(Integer amount) {
+		this.quantity += amount;
+	}
+	
+	
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, price, quantity);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(id, other.id) && Objects.equals(name, other.name) && Objects.equals(price, other.price)
+				&& Objects.equals(quantity, other.quantity);
 	}
 
 	@Override
