@@ -57,8 +57,14 @@ public class Product {
 	public void addQuantity(Integer amount) {
 		this.quantity += amount;
 	}
-	
-	
+
+	public void removeQuantity(Integer amount) {
+		if (amount > quantity) {
+			throw new IllegalArgumentException("Insufficient quantity in stock.");
+		}
+
+		this.quantity -= amount;
+	}
 
 	@Override
 	public int hashCode() {
