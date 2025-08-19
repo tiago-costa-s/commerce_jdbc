@@ -46,16 +46,42 @@ public class Program {
 //		newProductDao.insert(newProduct);
 //		System.out.println("Inserted! New id = " + newProduct.getId());		
 
-		System.out.println("===== 2 - findById =====");
-		System.out.print("Enter the product ID: ");
-		int id = sc.nextInt();
-		Product product = newProductDao.findById(id);
+//		System.out.println("===== 2 - findById =====");
+//		System.out.print("Enter the product ID: ");
+//		int id = sc.nextInt();
+//		Product product = newProductDao.findById(id);
+//
+//		if (product != null) {
+//			System.out.println(product);
+//		} else {
+//			System.out.println("Product not fount.");
+//		}
 
-		if (product != null) {
-			System.out.println(product);
-		} else {
-			System.out.println("Product not fount.");
-		}
+//		System.out.println("===== 3 - Update =====");
+//		System.out.print("Enter the product ID to update:  ");
+//		int id = sc.nextInt();
+//		sc.nextLine();
+//
+//		System.out.print("New name: ");
+//		String name = sc.nextLine();
+//
+//		System.out.print("New price: ");
+//		Double price = sc.nextDouble();
+//
+//		System.out.print("New quantity: ");
+//		int quantity = sc.nextInt();
+//
+//		Product product = new Product(id, name, price, quantity);
+//
+//		newProductDao.update(product);
+//		System.out.println("Update completed!");
+
+		System.out.println("===== 4 - Delete =====");
+		System.out.print("Enter the product ID to delete: ");
+		int id = sc.nextInt();
+
+		newProductDao.deleteById(id);
+		System.out.print("Product delete successfully! ");
 
 		sc.close();
 	}
