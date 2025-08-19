@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DB;
@@ -76,7 +77,7 @@ public class ProductDaoJDBC implements ProductDao {
 
 	@Override
 	public void deleteById(Integer id) {
-		PreparedStatement st = null;	
+		PreparedStatement st = null;
 
 		try {
 			st = conn.prepareStatement("DELETE FROM product WHERE id = ?");
@@ -126,8 +127,29 @@ public class ProductDaoJDBC implements ProductDao {
 
 	@Override
 	public List<Product> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+
+		List<Product> list = new ArrayList<>();
+
+		try {
+			st = conn.prepareStatement("SELECT * FROM product ORDER BY name");
+			rs = st.executeQuery();
+
+			while (rs.next()) {
+				Product product = new Product(rs.getInt("id"), rs.getString("name"), rs.getDouble("price"),
+						rs.getInt("quantity"));
+
+				list.add(product);
+			}
+			return list;
+
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeResultSet(rs);
+			DB.closeStatement(st);
+		}
 	}
 
 }

@@ -76,12 +76,20 @@ public class Program {
 //		newProductDao.update(product);
 //		System.out.println("Update completed!");
 
-		System.out.println("===== 4 - Delete =====");
-		System.out.print("Enter the product ID to delete: ");
-		int id = sc.nextInt();
+//		System.out.println("===== 4 - Delete =====");
+//		System.out.print("Enter the product ID to delete: ");
+//		int id = sc.nextInt();
+//
+//		newProductDao.deleteById(id);
+//		System.out.print("Product delete successfully! ");
 
-		newProductDao.deleteById(id);
-		System.out.print("Product delete successfully! ");
+		System.out.println("===== 5 - findAll =====");
+		System.out.println("\n===== List all products =====");
+		List<Product> list = newProductDao.findAll();
+
+		for (Product p : list) {
+			System.out.println(p);
+		}
 
 		sc.close();
 	}
